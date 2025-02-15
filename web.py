@@ -1,5 +1,5 @@
 
-# ____________________________________________________RUN IT USING THE COMMAND "streamlit run (the path)"____________________________________________________
+# RUN IT USING THE COMMAND "streamlit run (the path)"____________________________________________________
 
 import streamlit as st
 import torch
@@ -8,9 +8,11 @@ import numpy as np
 import cv2
 from PIL import Image
 import os
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # Load trained YOLOv8 model
-model = YOLO("modelsub.pt")  # Ensure best.pt is in "model/" directory
+model = YOLO("modelultime.pt")  # Ensure best.pt is in "model/" directory
 
 # Streamlit UI
 st.title("📊 Ramy Shelf Share Detection")
@@ -34,7 +36,7 @@ elif camera_input:
 # Run YOLOv8 inference only if an image is available
 if uploaded_file or camera_input:
     # Run YOLOv8 inference
-    results = model.predict(image, conf=0.2)  # Adjust confidence threshold if needed
+    results = model.predict(image, conf=0.4)  # Adjust confidence threshold if needed
 
     # Display detected image
     for result in results:
@@ -66,7 +68,7 @@ if uploaded_file or camera_input:
             cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
 
         # Convert back to PIL for display
-        st.image(image, caption="Detected Products", use_column_width=True)
+        st.image(image, caption="Detected Products", use_container_width=True)
 
         # Display results
         st.subheader("📊 Results")
