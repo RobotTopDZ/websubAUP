@@ -1,5 +1,5 @@
 
-# RUN IT USING THE COMMAND "streamlit run (the path)"____________________________________________________
+# ____________________________________________________RUN IT USING THE COMMAND "streamlit run (the path)"____________________________________________________
 
 import streamlit as st
 import torch
